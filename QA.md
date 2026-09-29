@@ -22,3 +22,9 @@
 - Desktop problem and product layouts visually checked. At 390 × 844, English statistic and pathway cards are readable and have no horizontal overflow (document width 375 px).
 - No console errors observed in exercised flows; translated nodes are populated.
 - A4 page count and OS-level reduced-motion check remain unverified as previously noted.
+
+## Separate product sections — 2026-09-29
+
+- Replaced the pinned, changing phone with three independent sections in normal document flow.
+- Desktop Korean and 390px English checked; all three sections and explanations exist together, no empty translations, mobile document width 375px within 390px viewport.
+- Section jump links replace screen-switch buttons. Hero motion remains, section motion honors reduced-motion CSS, and one-pager still omits product content.

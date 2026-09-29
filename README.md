@@ -19,7 +19,7 @@ The default port is 4174 to avoid the original draft server on 4173. Set `PORT` 
 
 Copilot Money is the primary visual reference: oversized centered typography, colored floating UI cards, dark surfaces and a product-led scroll sequence. WeCover copy, palette and original prototype screens are used throughout; no Copilot assets are copied.
 
-Desktop: the hero device rises on scroll; a sticky product stage moves through checklist, estimate and documents. Buttons also select each screen. Mobile: ordinary native scrolling and explicit screen controls. Reduced motion disables floating/rising animation and the pinned scroll sequence; the same buttons remain usable. One-pager mode removes motion and product stage; print CSS targets A4 with 12 mm margins.
+The hero device rises on desktop scroll. Product screens appear in three separate vertically stacked sections with numbered headings, different forest backgrounds and section jump links. Desktop and mobile both use native scrolling; each phone gently rises as its section enters view. Reduced motion disables these movements. One-pager mode omits the product sections; print CSS targets A4 with 12 mm margins.
 
 ## Sources and boundaries
 

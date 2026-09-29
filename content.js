@@ -342,53 +342,50 @@ const copy = {
 };
 const params=new URLSearchParams(location.search);
 let lang=['ko','en'].includes(params.get('lang'))?params.get('lang'):'ko';
-let feature=0;
 const isOnePager=params.get('view')==='onepager';
 const motion=matchMedia('(prefers-reduced-motion: reduce)');
 const desktop=matchMedia('(min-width: 701px)');
-const track=document.querySelector('.product-track');
 const preview=document.querySelector('.hero-preview');
-const screenIds=[19,39,27];
 document.body.classList.toggle('onepager',isOnePager);
-function renderFeature(){
- const [title,body,tags]=copy[lang].featureDetails[feature];
- document.getElementById('panel-number').textContent=String(feature+1).padStart(2,'0')+' / 03';
- document.getElementById('feature-title').textContent=title;
- document.getElementById('feature-body').textContent=body;
- document.getElementById('feature-tags').replaceChildren(...tags.map(text=>{const el=document.createElement('span');el.textContent=text;return el;}));
- document.querySelectorAll('[data-feature]').forEach(b=>b.setAttribute('aria-pressed',String(Number(b.dataset.feature)===feature)));
- document.querySelectorAll('[data-screen]').forEach(el=>el.hidden=Number(el.dataset.screen)!==feature);
- document.getElementById('feature-insights').replaceChildren(...copy[lang].featureInsights[feature].map(([title,body],i)=>{const li=document.createElement('li');const number=document.createElement('span');number.className='insight-number';number.textContent=String(i+1).padStart(2,'0');const content=document.createElement('div');const strong=document.createElement('strong');strong.textContent=title;const p=document.createElement('p');p.textContent=body;content.append(strong,p);li.append(number,content);return li;}));
- document.getElementById('stage-chip-text').textContent=copy[lang].stageChips[feature];
- document.getElementById('screen-link').href='screens/'+screenIds[feature]+'.html';
- document.querySelector('.stage-word').textContent=['Next.','Plan.','Ready.'][feature];
+function renderChapters(){
+ document.querySelectorAll('[data-chapter]').forEach(section=>{
+  const i=Number(section.dataset.chapter), [title,body]=copy[lang].featureDetails[i];
+  section.querySelector('h3').textContent=title;
+  section.querySelector('.chapter-body').textContent=body;
+  section.querySelector('.chapter-chip').textContent=copy[lang].stageChips[i];
+  section.querySelector('.feature-insights').replaceChildren(...copy[lang].featureInsights[i].map(([title,body],index)=>{
+   const li=document.createElement('li'),number=document.createElement('span'),content=document.createElement('div'),strong=document.createElement('strong'),p=document.createElement('p');
+   number.className='insight-number';number.textContent=String(index+1).padStart(2,'0');strong.textContent=title;p.textContent=body;content.append(strong,p);li.append(number,content);return li;
+  }));
+ });
 }
 function render(){
  document.documentElement.lang=lang;
  document.querySelectorAll('[data-t]').forEach(el=>{const value=copy[lang][el.dataset.t];if(typeof value==='string')el.innerHTML=value;});
  document.querySelectorAll('[data-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.lang===lang)));
- document.querySelector('.feature-switch').setAttribute('aria-label',lang==='ko'?'제품 화면 선택':'Choose a product screen');
+ document.querySelector('.chapter-nav').setAttribute('aria-label',lang==='ko'?'제품별 섹션 바로가기':'Explore each product section');
  document.title=lang==='ko'?'위커버 · 치료에 집중하도록, 다음 할 일은 함께':'We:Cover · Focus on care. Find your next step.';
  document.querySelector('meta[name=description]').content=copy[lang].heroBody.replace(/<br>/g,' ');
  document.querySelectorAll('.onepager-link').forEach(el=>{el.href=isOnePager?'?lang='+lang:'?view=onepager&lang='+lang;if(isOnePager)el.textContent=lang==='ko'?'전체 페이지 보기':'Full experience';});
- renderFeature();
+ renderChapters();
 }
 document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>{lang=b.dataset.lang;const url=new URL(location.href);url.searchParams.set('lang',lang);history.replaceState(null,'',url);render();}));
-document.querySelectorAll('[data-feature]').forEach(b=>b.addEventListener('click',()=>{
- feature=Number(b.dataset.feature);renderFeature();
- if(desktop.matches&&!motion.matches&&!isOnePager){const start=window.scrollY+track.getBoundingClientRect().top;const span=track.offsetHeight-window.innerHeight;window.scrollTo({top:start+span*(feature+.35)/3,behavior:'instant'});}
-}));
 document.getElementById('print-button').addEventListener('click',()=>window.print());
 let queued=false;
 function updateScroll(){
  queued=false;
  if(!desktop.matches||motion.matches||isOnePager){preview.style.removeProperty('--rise');return;}
  preview.style.setProperty('--rise',Math.max(0,70-window.scrollY*.18)+'px');
- const rect=track.getBoundingClientRect();
- const span=track.offsetHeight-window.innerHeight;
- if(rect.top<=1&&rect.bottom>=window.innerHeight-1&&span>0){const next=Math.min(2,Math.max(0,Math.floor((-rect.top/span)*3)));if(next!==feature){feature=next;renderFeature();}}
+
 }
 window.addEventListener('scroll',()=>{if(!queued){queued=true;requestAnimationFrame(updateScroll);}},{passive:true});
 window.addEventListener('resize',updateScroll);
 motion.addEventListener('change',updateScroll);
 render();updateScroll();
+// Each section stays in normal document flow; movement never hides content.
+if('IntersectionObserver' in window){
+ const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+  if(entry.isIntersecting){entry.target.classList.add('in-view');observer.unobserve(entry.target);}
+ }),{threshold:.12});
+ document.querySelectorAll('.product-chapter').forEach(section=>observer.observe(section));
+}
