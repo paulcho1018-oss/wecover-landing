@@ -1,6 +1,6 @@
 # We:Cover landing
 
-KR/EN landing page for a Korea-focused post-diagnosis financial navigation service. Static HTML/CSS/JS, with no package install or build step.
+KR/EN landing page for a Korea-focused post-diagnosis financial navigation service. Static HTML/CSS/JS, with no package dependencies. Production uses a small static-file copy build.
 
 ## Preview
 
@@ -34,7 +34,17 @@ Desktop: the hero device rises on scroll; a sticky product stage moves through c
 
 Private source repository: https://github.com/paulcho1018-oss/wecover-landing
 
-The GitHub connection has read/write access. Source upload is separate from website deployment: localhost URLs work only on the machine running the preview server. No public deployment or shareable landing-page URL has been created yet.
+## Production deployment
+
+Public site: https://wecover-landing.vercel.app/
+
+Vercel deploys the connected GitHub main branch automatically. `vercel.json` runs `node scripts/build.cjs` and publishes only `dist/`. The build copies eight required page, asset and prototype files. Internal notes, QA screenshots and the preview server stay out of the published output.
+
+- Korean: https://wecover-landing.vercel.app/?lang=ko
+- English: https://wecover-landing.vercel.app/?lang=en
+- One-pager: https://wecover-landing.vercel.app/?view=onepager&lang=ko
+
+Localhost preview URLs work only on the machine running the preview server; share the public Vercel URL with visitors.
 
 ## Validation
 
