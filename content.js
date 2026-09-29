@@ -225,7 +225,7 @@ const copy = {
     "feature3": "Documents",
     "openScreen": "Open the full prototype screen",
     "stageChip": "Your next step, in sight",
-    "prototypeNote": "Original Korean HTML prototype · Names, amounts and deadlines are illustrative. These are not captures of the current live app or actual support outcomes.",
+    "prototypeNote": "English translation of the HTML prototype · Names, amounts and deadlines are illustrative. These are not captures of the current live app or actual support outcomes.",
     "trustEyebrow": "Beyond finding information",
     "trustTitle": "Knowing is a start.<br>Following through matters.",
     "trust1Title": "Information becomes action",
@@ -369,6 +369,17 @@ function render(){
  document.title=lang==='ko'?'위커버 · 치료에 집중하도록, 다음 할 일은 함께':'We:Cover · Focus on care. Find your next step.';
  document.querySelector('meta[name=description]').content=copy[lang].heroBody.replace(/<br>/g,' ');
  document.querySelectorAll('.onepager-link').forEach(el=>{el.href=isOnePager?'?lang='+lang:'?view=onepager&lang='+lang;if(isOnePager)el.textContent=lang==='ko'?'전체 페이지 보기':'Full experience';});
+ document.querySelectorAll('iframe[src^="screens/"], a[href^="screens/"]').forEach(el=>{
+  const attr=el.tagName==='IFRAME'?'src':'href';
+  const current=el.getAttribute(attr);
+  const next=current.replace(/(?:-en)?\.html$/, (lang==='en'?'-en':'')+'.html');
+  if(current!==next)el.setAttribute(attr,next);
+  if(el.tagName==='IFRAME'){
+   const id=current.match(/screens\/(\d+)/)[1];
+   const name=({'19':['체크리스트','Checklist'],'39':['지원액 계산','Support estimate'],'27':['준비 서류','Documents']})[id];
+   el.title=name[lang==='en'?1:0]+(lang==='en'?' · English HTML prototype':' · 한국어 HTML 프로토타입');
+  }
+ });
  renderChapters();
 }
 document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>{lang=b.dataset.lang;const url=new URL(location.href);url.searchParams.set('lang',lang);history.replaceState(null,'',url);render();}));
