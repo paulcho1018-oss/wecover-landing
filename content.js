@@ -340,6 +340,8 @@ const copy = {
     ]
   }
 };
+Object.assign(copy.ko,{"teamEyebrow":"위커버를 만드는 사람들","teamTitle":"서로 다른 경험으로,<br>같은 문제를 풀어갑니다.","teamBody":"금융·기획·개발 경험을 가진 네 명이 위커버를 직접 만들고 있습니다.","teamConnect":"LinkedIn 프로필","teamScan":"스캔하거나 눌러 연결하세요","team0Name":"김성호","team0Role":"팀장 · 사업","team0Bio":"토스페이 운영·동양생명 보험금 심사 인턴 경험","team1Name":"조성환","team1Role":"사업","team1Bio":"나이스인베스팅 서비스 기획·법무법인 태평양 공정거래 부서 인턴 경험","team2Name":"김주연","team2Role":"백엔드 개발","team2Bio":"카카오모빌리티 파트너성장지원팀 AI 서비스 기획·개발 인턴 경험","team3Name":"윤서현","team3Role":"프론트엔드 개발","team3Bio":"크레비스파트너스 마케팅서비스팀 웹서비스 기획 인턴 경험"});
+Object.assign(copy.en,{"teamEyebrow":"THE PEOPLE BEHIND WE:COVER","teamTitle":"Different perspectives.<br>One shared purpose.","teamBody":"Four people bringing experience in finance, planning and development to We:Cover.","teamConnect":"View LinkedIn","teamScan":"Scan or tap to connect","team0Name":"Sungho Kim","team0Role":"Team Lead · Business","team0Bio":"Internship experience in merchant operations and insurance claims review.","team1Name":"Seonghwan Cho","team1Role":"Business","team1Bio":"Internship experience in service planning and competition law.","team2Name":"Juyeon Kim","team2Role":"Backend Development","team2Bio":"Internship experience in AI service planning and development at Kakao Mobility.","team3Name":"Seohyun Yoon","team3Role":"Frontend Development","team3Bio":"Internship experience in web service planning at Crevisse Partners."});
 const params=new URLSearchParams(location.search);
 let lang=['ko','en'].includes(params.get('lang'))?params.get('lang'):'ko';
 const isOnePager=params.get('view')==='onepager';

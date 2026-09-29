@@ -28,3 +28,10 @@
 - Replaced the pinned, changing phone with three independent sections in normal document flow.
 - Desktop Korean and 390px English checked; all three sections and explanations exist together, no empty translations, mobile document width 375px within 390px viewport.
 - Section jump links replace screen-switch buttons. Hero motion remains, section motion honors reduced-motion CSS, and one-pager still omits product content.
+
+## Team profiles and LinkedIn QR — 2026-09-29
+
+- Four QR matrices decoded with zxing-cpp and matched the exact supplied URLs.
+- Desktop: all four SVG QR assets loaded. KR/EN profiles and destination mappings checked.
+- 390px English: document width 375px, no horizontal overflow. No console errors observed.
+- Static build copies all four QR SVG files.

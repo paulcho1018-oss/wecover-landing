@@ -38,7 +38,7 @@ Private source repository: https://github.com/paulcho1018-oss/wecover-landing
 
 Public site: https://wecover-landing.vercel.app/
 
-Vercel deploys the connected GitHub main branch automatically. `vercel.json` runs `node scripts/build.cjs` and publishes only `dist/`. The build copies eight required page, asset and prototype files. Internal notes, QA screenshots and the preview server stay out of the published output.
+Vercel deploys the connected GitHub main branch automatically. `vercel.json` runs `node scripts/build.cjs` and publishes only `dist/`. The build copies twelve required page, asset and prototype files. Internal notes, QA screenshots and the preview server stay out of the published output.
 
 - Korean: https://wecover-landing.vercel.app/?lang=ko
 - English: https://wecover-landing.vercel.app/?lang=en
@@ -53,3 +53,7 @@ See `QA.md`. No external runtime dependencies, analytics or data collection. Pub
 ## Pitch-deck refinement
 
 See `REFERENCE-NOTES.md` for the selected palette, source-backed statistic, screen explanations and excluded claims. The calculator stage now displays the original prototype's result example (screen 39); screen 30 remains available as a source asset. The original large-type and scroll-driven composition is preserved.
+
+## Team
+
+Four brief bilingual profiles use the supplied final deck, page 47. Direct LinkedIn links and locally generated SVG QR codes use the four URLs supplied by the user. One-pager and print views keep compact names, roles and links.
