@@ -368,7 +368,7 @@ function render(){
  document.querySelector('.chapter-nav').setAttribute('aria-label',lang==='ko'?'제품별 섹션 바로가기':'Explore each product section');
  document.title=lang==='ko'?'위커버 · 치료에 집중하도록, 다음 할 일은 함께':'We:Cover · Focus on care. Find your next step.';
  document.querySelector('meta[name=description]').content=copy[lang].heroBody.replace(/<br>/g,' ');
- document.querySelectorAll('.onepager-link').forEach(el=>{el.href=isOnePager?'?lang='+lang:'?view=onepager&lang='+lang;if(isOnePager)el.textContent=lang==='ko'?'전체 페이지 보기':'Full experience';});
+ document.querySelectorAll('.onepager-link').forEach(el=>{el.href='assets/WeCover_OnePager_Portrait_v2.pdf';});
  document.querySelectorAll('iframe[src^="screens/"], a[href^="screens/"]').forEach(el=>{
   const attr=el.tagName==='IFRAME'?'src':'href';
   const current=el.getAttribute(attr);
