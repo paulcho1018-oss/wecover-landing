@@ -1,4 +1,4 @@
-# We:Cover landing
+# Wecover landing
 
 KR/EN landing page for a Korea-focused post-diagnosis financial navigation service. Static HTML/CSS/JS, with no package dependencies. Production uses a small static-file copy build.
 
@@ -17,7 +17,7 @@ The default port is 4174 to avoid the original draft server on 4173. Set `PORT` 
 
 ## Design and behavior
 
-Copilot Money is the primary visual reference: oversized centered typography, colored floating UI cards, dark surfaces and a product-led scroll sequence. WeCover copy, palette and original prototype screens are used throughout; no Copilot assets are copied.
+Copilot Money is the primary visual reference: oversized centered typography, colored floating UI cards, dark surfaces and a product-led scroll sequence. Wecover copy, palette and original prototype screens are used throughout; no Copilot assets are copied.
 
 The hero device rises on desktop scroll. Product screens appear in three separate vertically stacked sections with numbered headings, different forest backgrounds and section jump links. Desktop and mobile both use native scrolling; each phone gently rises as its section enters view. Reduced motion disables these movements. One-pager mode omits the product sections; print CSS targets A4 with 12 mm margins.
 
@@ -38,7 +38,7 @@ Private source repository: https://github.com/paulcho1018-oss/wecover-landing
 
 Public site: https://wecover-landing.vercel.app/
 
-Vercel deploys the connected GitHub main branch automatically. `vercel.json` runs `node scripts/build.cjs` and publishes only `dist/`. The build copies twelve required page, asset and prototype files. Internal notes, QA screenshots and the preview server stay out of the published output.
+Vercel deploys the connected GitHub main branch automatically. `vercel.json` runs `node scripts/build.cjs` and publishes only `dist/`. The build copies the explicit page, support, asset and prototype file list. Internal notes, QA screenshots and the preview server stay out of the published output.
 
 - Korean: https://wecover-landing.vercel.app/?lang=ko
 - English: https://wecover-landing.vercel.app/?lang=en
@@ -57,3 +57,8 @@ See `REFERENCE-NOTES.md` for the selected palette, source-backed statistic, scre
 ## Team
 
 Four brief bilingual profiles use the supplied final deck, page 47. Direct LinkedIn links and locally generated SVG QR codes use the four URLs supplied by the user. One-pager and print views keep compact names, roles and links.
+
+
+## Korean app support
+
+`support.html` and `privacy.html` support the Wecover Korean iPhone release. Contact: paulcho1018@gmail.com. Both pages are generated from the app repository privacyPolicy.json with buildSupport.cjs. Regenerate and copy them here when the policy changes. They do not collect app input or attach health records to email.
